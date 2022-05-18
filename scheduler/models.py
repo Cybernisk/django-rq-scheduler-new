@@ -318,7 +318,7 @@ class RepeatableJob(ScheduledTimeMixin, BaseJob):
     def schedule(self):
         result = super(RepeatableJob, self).schedule()
         self._prevent_duplicate_runs()
-        if self.scheduled_time < now():
+        if self.scheduled_time > now():
             return False
         if result is False:
             return False
